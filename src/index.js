@@ -3,6 +3,8 @@ const engine = require('express-handlebars');
 const port = 3001;
 const morgan = require('morgan');
 const path = require('path');
+const route = require('./routes/web');
+
 
 const app = express();
 
@@ -27,14 +29,10 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'))
 
 
+// Routes init
+route(app);
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
 
-app.get('/news', (req, res) => {
-    res.render('news')
-})
 
 
 app.listen(port, () => {
